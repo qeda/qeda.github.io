@@ -72,24 +72,43 @@
 </table>
 <p>All configuration parameters and list of added components are saved in <code>.qeda.yaml</code> configuration file which is created by the utility. It is a good idea to add this file to your source version control system.</p>
 <h2 id="-add-"><code>add</code></h2>
-<p>Firstly this command looks for <code>COMPONENT</code>&#39;s YAML-description in <code>library</code> directory. If failed to find then it try to download correspondent description from <a href="/doc/library">remote repository</a>. If successfully utility will cache this description file in <code>library</code> directory and add correspondent record to <code>.qeda.yaml</code> configuration file. When called for the second time utility will use cached file instead of loading it from Internet.</p>
+<p>Firstly this command looks for <em>COMPONENT</em>&#39;s YAML-description in <code>library</code> directory. If failed to find then it try to download correspondent description from <a href="/doc/library">remote repository</a>. If successfully utility will cache this description file in <code>library</code> directory and add correspondent record to <code>.qeda.yaml</code> configuration file. When called for the second time utility will use cached file instead of loading it from Internet.</p>
 <p>If there is no appropriate description file in local <code>library</code> directory nor in remote library, utility will return an error.</p>
+<p><strong>See also</strong>: <a href="#-load-">load</a></p>
 <h2 id="-config-"><code>config</code></h2>
-<p><em>To be defined.</em></p>
+<p>This command allow to tune individual configuration parameters of future library of electronic components (see <a href="#parameters-list">Parameters list</a>). To set <em>PARAM</em> you need to provide <em>VALUE</em> as second argument to command. To check the parameter set one should omit the <em>VALUE</em> argument.</p>
 <h2 id="-generate-"><code>generate</code></h2>
-<p><em>To be defined.</em></p>
+<p>The final command which generates a library of electronic components according to settings found in <code>.qeda.yaml</code> configuration file.</p>
 <h2 id="-ground-"><code>ground</code></h2>
-<p><em>To be defined.</em></p>
+<p>Add global ground symbol. There are three optional prefixes for ground net name:</p>
+<ul>
+<li><code>signal</code></li>
+<li><code>chassis</code></li>
+<li><code>earth</code></li>
+</ul>
+<pre><code class="lang-bash">qeda ground GND
+qeda ground signal/GNDS
+qeda ground chassis/GNDC
+qeda ground earth/GNDE
+</code></pre>
+<center><img src="/img/doc/ground.png" width="300" height="80" alt="Ground Symbols"></center>
+
+<p><strong>See also</strong>: <a href="#-power-">power</a></p>
 <h2 id="-load-"><code>load</code></h2>
-<p><em>To be defined.</em></p>
+<p>This command loads and caches component description from <a href="/doc/library">remote repository</a> regardless of its existence in <code>library</code> directory <strong>without</strong> adding to configuration file.</p>
+<p><strong>See also</strong>: <a href="#-add-">add</a></p>
 <h2 id="-power-"><code>power</code></h2>
-<p><em>To be defined.</em></p>
+<p>Add global power symbol.</p>
+<p><strong>See also</strong>: <a href="#-ground-">ground</a></p>
 <h2 id="-reset-"><code>reset</code></h2>
-<p><em>To be defined.</em></p>
+<p>This command completely deletes <code>.qeda.yaml</code> configuration file. It is good idea to use it after some experiments before creating release library.</p>
+<p><strong>Use this command with caution because it can erase all your work.</strong></p>
 <h2 id="-sort-"><code>sort</code></h2>
-<p><em>To be defined.</em></p>
+<p>This command sorts components and nets in <code>.qeda.yaml</code> configuration file in alphabetical order. This may be useful if you wish to edit this file manually in future. But sorting after starting schematic design may cause some direct annotation issues due to land pattern naming sequence.</p>
+<p><strong>It is strongly recommended to use this command only before starting schematic design.</strong></p>
 <h2 id="-test-"><code>test</code></h2>
-<p><em>To be defined.</em></p>
+<p>This command will produce a library with the only <em>COMPONENT</em>. The purpose of this command is to check look and integrity of electronic component. Library will be named <code>test_&lt;conponent&gt;</code>.</p>
+<p>This command does not use components list from <code>.qeda.yaml</code> configuration file nor affects it in any manner. But other parameters set by <a href="#-config-">config</a> command are taken into account during library generation.</p>
 <h2 id="parameters-list">Parameters list</h2>
 <p>General parameters:</p>
 <table>
@@ -97,7 +116,7 @@
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Default value</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -106,12 +125,13 @@
 <td><nobr><code>connection.timeout</code></nobr></td>
 <td>integer (ms)</td>
 <td>5000</td>
-<td></td>
+<td>Maximum connection timeout for component description loading from <a href="/doc/library">remote repository</a></td>
 </tr>
 <tr>
 <td><code>output</code></td>
 <td>string</td>
 <td>&#39;kicad&#39;</td>
+<td>Output library format. The only option supported at the moment is <code>&#39;kicad&#39;</code></td>
 </tr>
 </tbody>
 </table>
@@ -121,7 +141,7 @@
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Default value</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -130,84 +150,85 @@
 <td><nobr><code>symbol.gridSize</code></nobr></td>
 <td>float (mm)</td>
 <td>2.5</td>
-<td></td>
+<td>Grid cell size.</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.fill</code></nobr></td>
 <td>string</td>
 <td>&#39;foreground&#39;</td>
-<td></td>
+<td>Symbol contour filling type. <br/>Options: <code>foreground</code>, <code>background</code>, <code>none</code><br/> <center><img src="/img/doc/fill.png" width="330" height="90" alt="Filling Options"></center></td>
 </tr>
 <tr>
 <td><nobr><code>symbol.fontSize.default</code></nobr></td>
 <td>float (mm)</td>
 <td>2.5</td>
-<td></td>
+<td>Default font size</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.fontSize.name</code></nobr></td>
 <td>float (mm)</td>
 <td>2.5</td>
-<td></td>
+<td>Font size for component name</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.fontSize.pin</code></nobr></td>
 <td>float (mm)</td>
 <td>2.5</td>
-<td></td>
+<td>Font size for pin name</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.fontSize.refDes</code></nobr></td>
 <td>float (mm)</td>
 <td>2.5</td>
-<td></td>
+<td>Font size for reference designator</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.lineWidth.default</code></nobr></td>
 <td>float (mm)</td>
 <td>0</td>
-<td></td>
+<td>Default line width</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.lineWidth.thick</code></nobr></td>
 <td>float (mm)</td>
 <td>0.6</td>
-<td></td>
+<td>Thick line width</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.lineWidth.thin</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td></td>
+<td>Thin line width</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.shortPinNames</code></nobr></td>
 <td>boolean</td>
 <td>false</td>
-<td></td>
+<td>Do not use alternative pin names separated by <code>/</code> char</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.space.attribute</code></nobr></td>
 <td>float (mm)</td>
 <td>2</td>
-<td></td>
+<td>Space between symbol contour and attribute</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.space.default</code></nobr></td>
 <td>float (mm)</td>
 <td>2</td>
-<td></td>
+<td>Default space</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.space.pin</code></nobr></td>
 <td>float (mm)</td>
 <td>1.5</td>
-<td></td>
+<td>Space between symbol contour and pin number</td>
 </tr>
 <tr>
 <td><nobr><code>symbol.style</code></nobr></td>
 <td>string</td>
 <td>&#39;default&#39;</td>
+<td>Symbol style.<br/> Options: <code>&#39;default&#39;</code>, <code>&#39;GOST&#39;</code></td>
 </tr>
 </tbody>
 </table>
@@ -217,7 +238,7 @@
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Default value</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead>

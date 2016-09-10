@@ -9,7 +9,7 @@
 </ul>
 </div><h1 id="command-line-utility">Command-line utility</h1>
 <p>QEDA command line utility is installed by using NPM:</p>
-<pre><code class="lang-bash">npm install -g qeda # or with `sudo` on some OS
+<pre><code class="lang-bash">sudo npm install -g qeda
 </code></pre>
 <p>Run in order to list all available commands:</p>
 <pre><code class="lang-bash">qeda --help
@@ -72,9 +72,11 @@
 </table>
 <p>All configuration parameters and list of added components are saved in <code>.qeda.yaml</code> configuration file which is created by the utility. It is a good idea to add this file to your source version control system.</p>
 <h2 id="-add-"><code>add</code></h2>
-<p>Firstly this command looks for <em>COMPONENT</em>&#39;s YAML-description in <code>library</code> directory. If failed to find then it try to download correspondent description from <a href="/doc/library">remote repository</a>. If successfully utility will cache this description file in <code>library</code> directory and add correspondent record to <code>.qeda.yaml</code> configuration file. When called for the second time utility will use cached file instead of loading it from Internet.</p>
+<p>Firstly this command looks for <em>COMPONENT</em>&#39;s YAML-description in <code>library</code> directory. In case of its absence utility tries to download correspondent description from <a href="/doc/library/">remote repository</a>. Successful downloading leads to caching this description file in <code>library</code> directory and add corresponding record to <code>.qeda.yaml</code> configuration file. When called for the second time, utility will use cached file instead of loading it from Internet.</p>
 <p>If there is no appropriate description file in local <code>library</code> directory nor in remote library, utility will return an error.</p>
-<p><strong>See also</strong>: <a href="#-load-">load</a></p>
+<p>Some components may be presented in several <a href="/doc/qeda/component/#-variations-">variations</a>. In order to add only one variation to library you need to point this variation after <code>@</code> character:</p>
+<pre><code>qeda add ti/sn74lvc1g07@sot-23
+</code></pre><p><strong>See also</strong>: <a href="#-load-">load</a></p>
 <h2 id="-config-"><code>config</code></h2>
 <p>This command allow to tune individual configuration parameters of future library of electronic components (see <a href="#parameters-list">Parameters list</a>). To set <em>PARAM</em> you need to provide <em>VALUE</em> as second argument to command. To check the parameter set one should omit the <em>VALUE</em> argument.</p>
 <h2 id="-generate-"><code>generate</code></h2>
@@ -247,150 +249,151 @@ qeda ground earth/GNDE
 <td><nobr><code>pattern.ball.collapsible</code></nobr></td>
 <td>boolean</td>
 <td>true</td>
-<td></td>
+<td>Collapsing option for BGA packages (according to IPC-7351)</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.clearance.leadToHole</code></nobr></td>
 <td>float (mm)</td>
 <td>0.1</td>
-<td></td>
+<td>Gap between through-hole lead and hole</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.clearance.padToMask</code></nobr></td>
 <td>float (mm)</td>
 <td>0.05</td>
-<td></td>
+<td>Gap between pad&#39;s metal and mask edges</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.clearance.padToPad</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td></td>
+<td>Gap between neighboring pads</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.clearance.padToSilk</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td></td>
+<td>Gap between pad&#39;s metal and silkscreen drawing</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.decimals</code></nobr></td>
 <td>integer</td>
 <td>3</td>
-<td></td>
+<td>Number of digits after decimal point (precision) in generated files</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.densityLevel</code></nobr></td>
 <td>string</td>
 <td>&#39;N&#39;</td>
-<td></td>
+<td>Component placement density level (according to IPC-7351).<br/> Options: <code>&#39;L&#39;</code>, <code>&#39;N&#39;</code>, <code>&#39;M&#39;</code></td>
 </tr>
 <tr>
 <td><nobr><code>pattern.fontSize.default</code></nobr></td>
 <td>float (mm)</td>
 <td>1</td>
-<td></td>
+<td>Default font size</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.fontSize.refDes</code></nobr></td>
 <td>float (mm)</td>
 <td>1.2</td>
-<td></td>
+<td>Font size for reference designator</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.fontSize.value</code></nobr></td>
 <td>float (mm)</td>
 <td>1</td>
-<td></td>
+<td>Font size for value</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.lineWidth.assembly</code></nobr></td>
 <td>float (mm)</td>
 <td>0.1</td>
-<td></td>
+<td>Line width for drawing in assembly layer</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.lineWidth.courtyard</code></nobr></td>
 <td>float (mm)</td>
 <td>0.05</td>
-<td></td>
+<td>Line width for drawing in courtyard layer</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.lineWidth.default</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td></td>
+<td>Default line width</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.lineWidth.silkscreen</code></nobr></td>
 <td>float (mm)</td>
 <td>0.12</td>
-<td></td>
+<td>Line width for drawing in silkscreen layer</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.minimum.drillDiameter</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td></td>
+<td>Minimal drill diameter (according to PCB manufacturer capabilities)</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.minimum.maskWidth</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td></td>
+<td>Minimal mask strip width (according to PCB manufacturer capabilities).<br/>Has higher priority over <nobr><code>pattern.clearance.padToMask</code></nobr> parameter</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.minimum.ringWidth</code></nobr></td>
 <td>float (mm)</td>
 <td>0.2</td>
-<td></td>
+<td>Minimal ring width for vias and through-hole pads (according to PCB manufacturer capabilities)</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.minimum.spaceForIron</code></nobr></td>
 <td>float (mm)</td>
 <td>0</td>
-<td></td>
+<td>Minimal space between lead and its pad edges</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.preferManufacturer</code></nobr></td>
 <td>boolean</td>
 <td>true</td>
-<td></td>
+<td>Prefer component manufacturer&#39;s dimensions rather than IPC-7351 standard while land pattern calculating</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.polarityMark</code></nobr></td>
 <td>string</td>
 <td>&#39;dot&#39;</td>
-<td></td>
+<td>Shape of polarity mark (near to the first pad).<br/> Options: <code>&#39;dot&#39;</code></td>
 </tr>
 <tr>
 <td><nobr><code>pattern.ratio.padToHole</code></nobr></td>
 <td>float</td>
 <td>1.5</td>
-<td></td>
+<td>Proportion for pad size calculation from hole diameter</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.style</code></nobr></td>
 <td>string</td>
 <td>&#39;default&#39;</td>
-<td></td>
+<td>Pattern style.<br/> Options: <code>&#39;default&#39;</code></td>
 </tr>
 <tr>
 <td><nobr><code>pattern.tolerance.default</code></nobr></td>
 <td>float (mm)</td>
 <td>0.1</td>
-<td></td>
+<td>Default size tolerance</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.tolerance.fabrication</code></nobr></td>
 <td>float (mm)</td>
 <td>0.1</td>
-<td></td>
+<td>Fabrication tolerance (provided by component manufacturer)</td>
 </tr>
 <tr>
 <td><nobr><code>pattern.tolerance.placement</code></nobr></td>
 <td>float (mm)</td>
 <td>0.1</td>
+<td>Placement tolerance (provided by component placement equipment)</td>
 </tr>
 </tbody>
 </table>

@@ -8,7 +8,7 @@
 </li>
 </ul>
 </div><h1 id="component-description">Component description</h1>
-<p>The file that describes electronic component represents human readable <a class="ext" href="http://yaml.org/" target="_blank">YAML</a> document. All description files should be located in <code>library</code> subdirectory. Path of description file inside <code>library</code> subdirectory is pointed as parameter in <code>qeda add</code> command.</p>
+<p>The file that describes electronic component represents human readable <a class="ext" href="http://yaml.org/" target="_blank">YAML</a><!--_--> document. All description files should be located in <code>library</code> subdirectory. Path of description file inside <code>library</code> subdirectory is pointed as parameter in <code>qeda add</code> command.</p>
 <p>For example if you add file <code>my-element.yaml</code> to <code>library</code> subdirectory you have to run in order to add it:</p>
 <pre><code class="lang-bash">qeda add my-element
 </code></pre>
@@ -22,7 +22,7 @@
 <pre><code class="lang-bash">git clone https://github.com/qeda/library.git --depth 1
 </code></pre>
 <h2 id="general-description-structure">General description structure</h2>
-<p>Let&#39;s explore simple YAML definition of <a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-sm-1.yaml" target="_blank">test point</a>.</p>
+<p>Let&#39;s explore simple YAML definition of <a class="ext" href="https://github.com/qeda/library/blob/master/misc/tp-sm-1.yaml" target="_blank">test point</a><!--_-->.</p>
 <pre><code class="lang-yaml">name: TP-SM-1
 description: Surface Mount Test Point, 1 mm diameter
 keywords: test point
@@ -105,7 +105,7 @@ housing:
 </tr>
 <tr>
 <td><a href="#-housing-">housing</a></td>
-<td>structure <em>or</em> list</td>
+<td>structure</td>
 <td><strong>required</strong></td>
 <td>Land pattern parameters</td>
 </tr>
@@ -152,7 +152,7 @@ housing:
 <td>Name postfix</td>
 </tr>
 <tr>
-<td><a href="#-variation-">variation</a></td>
+<td><a href="#-variations-">variations</a></td>
 <td>list</td>
 <td>optional</td>
 <td>List of possible variations described in separate files</td>
@@ -160,33 +160,36 @@ housing:
 </tbody>
 </table>
 <h2 id="-abstract-"><code>abstract</code></h2>
-<p><em>To be defined</em></p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max607x.yaml" target="_blank">Maxim MAX607x</a>:</p>
+<p>Abstract description may be used only as base for other description. It is useful when several components share common parameters. Abstract component can not be added to library.</p>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max607x.yaml" target="_blank">Maxim MAX607x</a><!--_-->:</p>
 <pre><code class="lang-yaml">abstract: true
 </code></pre>
 <p><strong>See also</strong>: <a href="#-base-">base</a></p>
 <h2 id="-alias-"><code>alias</code></h2>
-<p><em>To be defined</em></p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a>:</p>
+<p>Alternative name of component. Creates separate record in output library.</p>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_-->:</p>
 <pre><code class="lang-yaml">name: LM1117MPX
 alias: LM1117IMPX
 </code></pre>
 <p><strong>See also</strong>: <a href="#-suffix-">suffix</a></p>
 <h2 id="-base-"><code>base</code></h2>
-<p><em>To be defined</em></p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max6070.yaml" target="_blank">Maxim MAX6070</a>:</p>
+<p>This directive allows to include parameters from other descriptions and override some of them.</p>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max6070.yaml" target="_blank">Maxim MAX6070</a><!--_-->:</p>
 <pre><code class="lang-yaml">base: MAX607x
 </code></pre>
-<p><strong>See also</strong>: <a href="#-abstract-">abstract</a>, <a href="#-variation-">variation</a></p>
+<p><strong>See also</strong>: <a href="#-abstract-">abstract</a></p>
 <h2 id="-datasheet-"><code>datasheet</code></h2>
-<p><em>To be defined</em></p>
+<p>Link to the datasheet.</p>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/opa335.yaml" target="_blank">TI OPA335</a><!--_-->:</p>
+<pre><code class="lang-yaml">datasheet: http://www.ti.com/lit/ds/symlink/opa335.pdf
+</code></pre>
 <h2 id="-description-"><code>description</code></h2>
 <p><em>To be defined</em></p>
 <h2 id="-housing-"><code>housing</code></h2>
 <p><em>To be defined</em></p>
 <h2 id="-joint-"><code>joint</code></h2>
 <p><em>To be defined</em></p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/altera/10m50sce144.yaml" target="_blank">Altera 10M50SCE144</a>:</p>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/altera/10m50sce144.yaml" target="_blank">Altera 10M50SCE144</a><!--_-->:</p>
 <pre><code class="lang-yaml">pinout:
   DIFF:
     L1n: 6
@@ -208,7 +211,7 @@ joint:
 <h2 id="-suffix-"><code>suffix</code></h2>
 <p><em>To be defined</em></p>
 <p><strong>See also</strong>: <a href="#-alias-">alias</a></p>
-<h2 id="-variation-"><code>variation</code></h2>
+<h2 id="-variations-"><code>variations</code></h2>
 <p><em>To be defined</em></p>
 </div></div><div id="push"></div></div><div id="footer-wrapper"><footer class="footer"><div class="container"><div class="row"><div class="col-md-8"><p>Copyright &copy; 2015&ndash;2016 QEDA Authors</p><p>Powered by&nbsp;<a href="http://noviga.com/" target="_blank"><img src="/img/noviga.png" height="30"></a></p></div><div class="col-md-1"><a class="cap" href="/">Home</a></div><div class="col-md-1"><a class="cap" href="/doc/">Doc</a></div><div class="col-md-1"><a class="cap ext" href="https://github.com/qeda" target="_blank">Source</a></div><div class="col-md-1"><a class="cap" href="/donate/">Donate</a></div></div></div></footer></div></body><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"><link href="/css/qeda.css" rel="stylesheet"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

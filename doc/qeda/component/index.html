@@ -134,6 +134,12 @@ housing:
 <td>Element name</td>
 </tr>
 <tr>
+<td><a href="#-parts-">parts</a></td>
+<td>structure</td>
+<td>optional</td>
+<td>Part list (for multi-part symbols)</td>
+</tr>
+<tr>
 <td><a href="#-pinout-">pinout</a></td>
 <td>structure</td>
 <td>optional</td>
@@ -248,12 +254,45 @@ joint:
 </code></pre>
 <h2 id="-keywords-"><code>keywords</code></h2>
 <p>Keywords related to the electronic component. May be used by <a href="/doc/qeda/styling/">custom style handlers</a> for extra information about element.</p>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/ata6670.yaml" target="_blank">Atmel ATA6670</a><!--_-->:</p>
+<pre><code class="lang-yaml">keywords: IC, Digital, Transceiver
+</code></pre>
 <h2 id="-name-"><code>name</code></h2>
 <p>Unique name of electronic component. This is key which element is identified in library by.</p>
 <p>This is a good practice to make combination of name and <a href="#-suffix-">suffix</a> to be most similar to ordering part number (except tape and reel package options, Pb-free version etc.).</p>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega128.yaml" target="_blank">Atmel ATmega128</a><!--_-->:</p>
+<pre><code class="lang-yaml">name: ATmega128
+</code></pre>
 <p><strong>See also</strong>: <a href="#-alias-">alias</a>, <a href="#-suffix-">suffix</a></p>
-<h2 id="-pinout-"><code>pinout</code></h2>
+<h2 id="-parts-"><code>parts</code></h2>
 <p><em>To be defined</em></p>
+<h2 id="-pinout-"><code>pinout</code></h2>
+<p>One of the central structures of component description. It defines component&#39;s pinout.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">pinout:
+  &lt;pin name&gt;: &lt;pin number 1&gt; [, &lt;pin number 2&gt; ...]
+  &lt;pin name 1&gt;, &lt;pin name 2&gt;: &lt;pin number 1&gt; , &lt;pin number 2&gt;
+  &lt;pin name from&gt;-&lt;pin name to&gt;: &lt;pin number from&gt;-&lt;pin number to&gt;
+  &lt;group name&gt;:
+    &lt;pin name 1&gt;: &lt;pin number&gt; [...]
+    &lt;pin name 2&gt;: &lt;pin number&gt; [...]
+</code></pre>
+<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8</a><!--_-->:</p>
+<pre><code class="lang-yaml">pinout:
+  PORTB:
+    PB0-7: 12-17, 7, 8
+  PORTC:
+    PC0-6: 23-29
+  PORTD:
+    PD0-7: 30-32, 1, 2, 9-11
+  ADC6: 19
+  ADC7: 22
+
+  AREF: 20
+  VCC: 4, 6
+  AVCC: 18
+  GND: 3, 5, 21
+</code></pre>
 <p><strong>See also</strong>: <a href="#-groups-">groups</a></p>
 <h2 id="-properties-"><code>properties</code></h2>
 <p><em>To be defined</em></p>

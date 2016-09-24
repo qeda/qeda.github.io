@@ -38,22 +38,22 @@ housing:
 <h2 id="parameter-types">Parameter types</h2>
 <ul>
 <li><p><em>boolean</em> &mdash; logical type, can be only <code>false</code> or <code>true</code></p>
-<p><strong>Example</strong>: <code>true</code></p>
+<p><strong>Real example</strong>: <code>true</code></p>
 </li>
 <li><p><em>list</em> &mdash; comma separated list of strings or numbers (or may contain only one item without comma)</p>
-<p><strong>Example</strong>: <code>foo, bar, 10, baz</code></p>
+<p><strong>Real example</strong>: <code>foo, bar, 10, baz</code></p>
 </li>
 <li><p><em>number</em> &mdash; numerical integer or float</p>
-<p><strong>Example</strong>: <code>1.35</code></p>
+<p><strong>Real example</strong>: <code>1.35</code></p>
 </li>
 <li><p><em>range</em> &mdash; range of numbers</p>
-<p><strong>Example</strong>: <code>1.25-1.45</code></p>
+<p><strong>Real example</strong>: <code>1.25-1.45</code></p>
 </li>
 <li><p><em>string</em> &mdash; line of text (may be quoted or not; quotes are recommended for numerical string in order to avoid ambiguity)</p>
-<p><strong>Example</strong>: <code>Bipolar transistor</code></p>
+<p><strong>Real example</strong>: <code>Bipolar transistor</code></p>
 </li>
 <li><p><em>structure</em> &mdash; entity that has second-level fields</p>
-<p><strong>Example</strong>:</p>
+<p><strong>Real example</strong>:</p>
 <pre><code class="lang-yaml">struct:
   field1: foo
   field2: 10
@@ -173,38 +173,39 @@ housing:
 </table>
 <h2 id="-abstract-"><code>abstract</code></h2>
 <p>Abstract description may be used only as base for other description. It is useful when several components share common parameters. Abstract component can not be added to library.</p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max607x.yaml" target="_blank">Maxim MAX607x</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max607x.yaml" target="_blank">Maxim MAX607x</a><!--_-->:</p>
 <pre><code class="lang-yaml">abstract: true
 </code></pre>
 <p><strong>See also</strong>: <a href="#-base-">base</a></p>
 <h2 id="-alias-"><code>alias</code></h2>
 <p>Alternative name (or names) of component. Creates separate record (records) in output library.</p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/lm1117mpx.yaml" target="_blank">TI LM1117MPX</a><!--_-->:</p>
 <pre><code class="lang-yaml">name: LM1117MPX
 alias: LM1117IMPX
 </code></pre>
 <p><strong>See also</strong>: <a href="#-name-">name</a>, <a href="#-suffix-">suffix</a></p>
 <h2 id="-base-"><code>base</code></h2>
-<p>This directive allows to include parameters from other descriptions and override some of them.</p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max6070.yaml" target="_blank">Maxim MAX6070</a><!--_-->:</p>
+<p>This directive allows to include parameters from other descriptions. Base description can be located in the same directory with component description (pointed by name without <code>.yaml</code> extension) as well as in other directory within <code>library</code> (pointed as <code>&lt;dir&gt;/&lt;YAML name&gt;</code>). Value is case insensitive.</p>
+<p>One may override parameters defined in base description and add other parameters.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/maxim/max6070.yaml" target="_blank">Maxim MAX6070</a><!--_-->:</p>
 <pre><code class="lang-yaml">base: MAX607x
 </code></pre>
 <p><strong>See also</strong>: <a href="#-abstract-">abstract</a></p>
 <h2 id="-datasheet-"><code>datasheet</code></h2>
 <p>Link to the datasheet.</p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/opa335.yaml" target="_blank">TI OPA335</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/opa335.yaml" target="_blank">TI OPA335</a><!--_-->:</p>
 <pre><code class="lang-yaml">datasheet: http://www.ti.com/lit/ds/symlink/opa335.pdf
 </code></pre>
 <h2 id="-description-"><code>description</code></h2>
 <p>Short text description of electronic component.</p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8A</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8A</a><!--_-->:</p>
 <pre><code class="lang-yaml">description: 8-bit AVR Microcontroller
 </code></pre>
 <h2 id="-groups-"><code>groups</code></h2>
 <p>There are two possible ways to combine pins into the groups. One of them is using <a href="#-pinout-">pinout</a> hierarchy. Another one is by virtue of <code>groups</code> structure.</p>
 <p>Structure format:</p>
 <pre><code class="lang-yaml">groups:
-  &lt;group name&gt;: &lt;pin name 1&gt; [,  &lt;pin name 2&gt; ...]
+  &lt;group name&gt;: &lt;pin name 1&gt; [,  &lt;pin name 2&gt; ...] | &lt;pin range&gt;
 </code></pre>
 <p>It is useful to prefer this way over <a href="#-pinout-">pinout</a> hierarchy in case of using several variations:</p>
 <pre><code class="lang-yaml">variations: QFP, BGA
@@ -221,7 +222,7 @@ pinout@BGA:
 groups:
   DATA: A, B, C
 </code></pre>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/iso72x.yaml" target="_blank">TI ISO72x</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/iso72x.yaml" target="_blank">TI ISO72x</a><!--_-->:</p>
 <pre><code class="lang-yaml">groups:
   DATA1: IN
   DATA2: OUT, ~EN
@@ -230,6 +231,7 @@ groups:
 </code></pre>
 <p><strong>See also</strong>: <a href="#-pinout-">pinout</a></p>
 <h2 id="-housing-"><code>housing</code></h2>
+<p>One of the three <strong>required</strong> parameters.</p>
 <p><em>To be defined</em></p>
 <h2 id="-joint-"><code>joint</code></h2>
 <p>This parameter is for group name concatenation with pin name separated by delimiter character.</p>
@@ -237,7 +239,7 @@ groups:
 <pre><code class="lang-yaml">joint:
   &lt;group name&gt;: &lt;delimiter character&gt;
 </code></pre>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/altera/10m50sce144.yaml" target="_blank">Altera 10M50SCE144</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/altera/10m50sce144.yaml" target="_blank">Altera 10M50SCE144</a><!--_-->:</p>
 <pre><code class="lang-yaml">pinout:
   DIFF:
     L1n: 6
@@ -254,18 +256,32 @@ joint:
 </code></pre>
 <h2 id="-keywords-"><code>keywords</code></h2>
 <p>Keywords related to the electronic component. May be used by <a href="/doc/qeda/styling/">custom style handlers</a> for extra information about element.</p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/ata6670.yaml" target="_blank">Atmel ATA6670</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/ata6670.yaml" target="_blank">Atmel ATA6670</a><!--_-->:</p>
 <pre><code class="lang-yaml">keywords: IC, Digital, Transceiver
 </code></pre>
 <h2 id="-name-"><code>name</code></h2>
+<p>One of the three <strong>required</strong> parameters.</p>
 <p>Unique name of electronic component. This is key which element is identified in library by.</p>
 <p>This is a good practice to make combination of name and <a href="#-suffix-">suffix</a> to be most similar to ordering part number (except tape and reel package options, Pb-free version etc.).</p>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega128.yaml" target="_blank">Atmel ATmega128</a><!--_-->:</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega128.yaml" target="_blank">Atmel ATmega128</a><!--_-->:</p>
 <pre><code class="lang-yaml">name: ATmega128
 </code></pre>
 <p><strong>See also</strong>: <a href="#-alias-">alias</a>, <a href="#-suffix-">suffix</a></p>
 <h2 id="-parts-"><code>parts</code></h2>
-<p><em>To be defined</em></p>
+<p>This parameter is needed for multi-part schematic symbols.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">parts:
+  &lt;part name&gt;: &lt;pin name 1&gt; [,  &lt;pin name 2&gt; ...] | &lt;pin range&gt;
+  &lt;part name&gt;: &lt;pin group name 1&gt; [,  &lt;pin group name 2&gt; ...] | &lt;pin group range&gt;
+</code></pre>
+<p>Each entry with <code>part name</code> defines separate schematic symbol which incorporates pins (and/or pin groups) specified.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/ti/tms320f28374dptp.yaml" target="_blank">TI TMS320F28374DPTP</a><!--_-->:</p>
+<pre><code class="lang-yaml">parts:
+  GPIO: GPIO
+  ADC: VREFA, ADCA, VREFB, ADCB, VREFC, ADCC, VREFD, ADCD, ADC
+  CONTROL: RESET, CLOCK, JTAG, VREGENZ, ERRORSTS, FILTER
+  POWER: VDD, VDD3VFL, VDDA, VDDIO, VDDOSC, VSS, VSSOSC, VSSA
+</code></pre>
 <h2 id="-pinout-"><code>pinout</code></h2>
 <p>One of the central structures of component description. It defines component&#39;s pinout.</p>
 <p>Structure format:</p>
@@ -273,11 +289,33 @@ joint:
   &lt;pin name&gt;: &lt;pin number 1&gt; [, &lt;pin number 2&gt; ...]
   &lt;pin name 1&gt;, &lt;pin name 2&gt;: &lt;pin number 1&gt; , &lt;pin number 2&gt;
   &lt;pin name from&gt;-&lt;pin name to&gt;: &lt;pin number from&gt;-&lt;pin number to&gt;
-  &lt;group name&gt;:
+  &lt;pin group name&gt;:
     &lt;pin name 1&gt;: &lt;pin number&gt; [...]
     &lt;pin name 2&gt;: &lt;pin number&gt; [...]
 </code></pre>
-<p><strong>Example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8</a><!--_-->:</p>
+<p><strong>Important</strong>: Pin names as well as pin group names should be unique.</p>
+<p>Pin numbers may be defined as comma separated list, range or combination of them.</p>
+<pre><code class="lang-yaml">pinout:
+  DATA: 1, 3-6, 10
+</code></pre>
+<p>Pin numbers may contain letters (for BGA packages):</p>
+<pre><code class="lang-yaml">pinout:
+  GND: B1, C10-C13, AA1-AC3
+</code></pre>
+<p>Several pins may be combined in group:</p>
+<pre><code class="lang-yaml">pinout:
+  SPI:
+    CS: 1
+    CLK: 2
+    MOSI: 3
+    MISO: 4
+</code></pre>
+<p>Pin names are also allowed to be combined. They will be converted to list automatically (its size should be equal to pin number list size on the right side).</p>
+<pre><code class="lang-yaml">pinout:
+  D16-0, CLK: 1-18
+</code></pre>
+<p>This will produce pins <code>D16</code> (pin number <code>1</code>), <code>D15</code> (<code>2</code>), <code>D14</code> (<code>3</code>) ... <code>D0</code>(<code>17</code>), <code>CLK</code> (<code>18</code>).</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/atmel/atmega8.yaml" target="_blank">Atmel ATmega8</a><!--_-->:</p>
 <pre><code class="lang-yaml">pinout:
   PORTB:
     PB0-7: 12-17, 7, 8
@@ -295,8 +333,44 @@ joint:
 </code></pre>
 <p><strong>See also</strong>: <a href="#-groups-">groups</a></p>
 <h2 id="-properties-"><code>properties</code></h2>
-<p><em>To be defined</em></p>
+<p>Electrical properties of elements pins.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">properties:
+  &lt;property&gt;: &lt;pin name 1&gt; [, &lt;pin number 2&gt; ...] | &lt;pin range&gt;
+  &lt;property&gt;: &lt;pin group name 1&gt; [, &lt;pin group name 2&gt; ...] | &lt;pin group range&gt;
+</code></pre>
+<p>If pin group pointed then each pin of this group will have property specified.</p>
+<p>Available properties:</p>
+<ul>
+<li><code>analog</code> &mdash; analog pin (e.g. <code>AIN</code>)</li>
+<li><code>bidir</code> &mdash; bidirectional digital pin (e.g. <code>GPIO</code>)</li>
+<li><code>ground</code> &mdash; ground pin (e.g. <code>GND</code>)</li>
+<li><code>in</code> &mdash; input pin (e.g. <code>CE</code>, <code>VIN</code>)</li>
+<li><code>inverted</code> &mdash; inverted pin (e.g. <code>~RESET</code>)</li>
+<li><code>nc</code>  &mdash; not connected pin (e.g. <code>NC</code>)</li>
+<li><code>out</code> &mdash; output pin (e.g. <code>SCLK</code>, <code>VOUT</code>)</li>
+<li><code>passive</code> &mdash; passive pin (e.g. <code>XTAL</code>)</li>
+<li><code>power</code> &mdash; passive pin (e.g. <code>VDD</code>)</li>
+<li><code>z</code> &mdash; high-impedance pin</li>
+</ul>
+<p>Some signals may have multiple properties:</p>
+<pre><code class="lang-yaml">properties:
+  in: ~RESET, VIN
+  out: VOUT
+  power: VIN, VOUT
+  inverted: ~RESET
+</code></pre>
+<p><code>VIN</code> is voltage input, <code>VOUT</code> is voltage output, <code>~RESET</code> is inverted digital input.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/cypress/cy15b102q.yaml" target="_blank">Cypress CY15B102Q</a><!--_-->:</p>
+<pre><code class="lang-yaml">properties:
+  in: ~WP, ~CS, ~HOLD, SCK, SI
+  out: SO
+  power: VDD
+  ground: VSS
+  inverted: ~WP, ~CS, ~HOLD
+</code></pre>
 <h2 id="-schematic-"><code>schematic</code></h2>
+<p>One of the three <strong>required</strong> parameters.</p>
 <p><em>To be defined</em></p>
 <h2 id="-suffix-"><code>suffix</code></h2>
 <p><em>To be defined</em></p>

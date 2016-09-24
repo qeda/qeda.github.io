@@ -72,7 +72,7 @@
 </table>
 <p>All configuration parameters and list of added components are saved in <code>.qeda.yaml</code> configuration file which is created by the utility. It is a good idea to add this file to your source version control system.</p>
 <h2 id="-add-"><code>add</code></h2>
-<p>Firstly this command looks for <em>COMPONENT</em>&#39;s YAML-description in <code>library</code> directory. In case of its absence utility tries to download correspondent description from <a href="/doc/library/">remote repository</a>. Successful downloading leads to caching this description file in <code>library</code> directory and add corresponding record to <code>.qeda.yaml</code> configuration file. When called for the second time, utility will use cached file instead of loading it from Internet.</p>
+<p>Firstly this command looks for <em>COMPONENT</em>&#39;s YAML-description in <code>library</code> directory (relatively to current working directory). In case of its absence utility tries to download correspondent description from <a href="/doc/library/">remote repository</a>. Successful downloading leads to caching this description file in <code>library</code> directory and add corresponding record to <code>.qeda.yaml</code> configuration file. When called for the second time, utility will use cached file instead of loading it from Internet.</p>
 <p>If there is no appropriate description file in local <code>library</code> directory nor in remote library, utility will return an error.</p>
 <p>Some components may be presented in several <a href="/doc/qeda/component/#-variations-">variations</a>. In order to add only one variation to library you need to point this variation after <code>@</code> character:</p>
 <pre><code>qeda add ti/sn74lvc1g07@sot-23

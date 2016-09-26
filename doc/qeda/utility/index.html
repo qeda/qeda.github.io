@@ -29,6 +29,11 @@
 <td><nobr><code>qeda add ti/iso721</code></nobr></td>
 </tr>
 <tr>
+<td><a href="#-completion-">completion</a></td>
+<td>Display completion script</td>
+<td><nobr><code>source &lt;(qeda completion)</code></nobr></td>
+</tr>
+<tr>
 <td><nobr><a href="#-config-">config</a> <em>PARAM</em> [<em>VALUE</em>]</nobr></td>
 <td>Set/get configuration parameter (see <a href="#parameters-list">Parameters list</a>)</td>
 <td><nobr><code>qeda config output kicad</code></nobr></td>
@@ -77,6 +82,12 @@
 <p>Some components may be presented in several <a href="/doc/qeda/component/#-variations-">variations</a>. In order to add only one variation to library you need to point this variation after <code>@</code> character:</p>
 <pre><code>qeda add ti/sn74lvc1g07@sot-23
 </code></pre><p><strong>See also</strong>: <a href="#-load-">load</a></p>
+<h2 id="-completion-"><code>completion</code></h2>
+<p>Generate completion script for shell and output it to stdout. Depending on Linux distribution one may save this script to system directory:</p>
+<pre><code class="lang-bash">qeda completion | sudo tee /usr/local/etc/bash_completion.d/qeda
+# or
+qeda completion | sudo tee /etc/bash_completion.d/qeda
+</code></pre>
 <h2 id="-config-"><code>config</code></h2>
 <p>This command allow to tune individual configuration parameters of future library of electronic components (see <a href="#parameters-list">Parameters list</a>). To set <em>PARAM</em> you need to provide <em>VALUE</em> as second argument to command. To check the parameter set one should omit the <em>VALUE</em> argument.</p>
 <h2 id="-generate-"><code>generate</code></h2>

@@ -394,7 +394,26 @@ joint:
 </code></pre>
 <h2 id="-schematic-"><code>schematic</code></h2>
 <p>One of the three <strong>required</strong> parameters.</p>
-<p><em>To be defined</em></p>
+<p>This section describes schematic symbol generation parameters.</p>
+<p>Structure format:</p>
+<pre><code class="lang-yaml">schematic:
+  symbol: &lt;symbol handler script name&gt;
+  ... # symbol dependent parameters
+</code></pre>
+<p><code>symbol</code> value is a base name of script which is responsible for schematic symbol generation. For example <code>symbol: IC</code> will run <a class="ext" href="https://github.com/qeda/qeda/blob/master/src/symbol/default/ic.coffee" target="_blank">symbol/default/ic.coffee</a><!--_--> script in order to generate integrated circuit schematic symbol. If style is not default then symbol generator script will be searched in <code>symbol/&lt;style&gt;/</code> directory (see <a class="ext" href="https://github.com/qeda/qeda/tree/master/src/symbol/gost" target="_blank">GOST style</a><!--_--> for example).</p>
+<p>One may use his own generator written on CoffeeScript or JavaScript placed in local <code>symbol</code> directory. For <code>./symbol/my-generator.js</code> script one should point:</p>
+<pre><code class="lang-yaml">schematic:
+  symbol: my-generator
+</code></pre>
+<p>Please refer to <a href="/doc/symbols/">particular symbol documentation</a> for detailed information about symbol dependent parameters.</p>
+<p><strong>Real example</strong> <a class="ext" href="https://github.com/qeda/library/blob/master/infineon/kp235.yaml" target="_blank">Infineon KP235</a><!--_-->:</p>
+<pre><code class="lang-yaml">schematic:
+  symbol: IC
+  left: SERIAL
+  right: VOUT, TEST
+  top: VDD
+  bottom: GND
+</code></pre>
 <h2 id="-suffix-"><code>suffix</code></h2>
 <p>One or multiple optional postfixes for component&#39;s aliases.</p>
 <p>For example:</p>

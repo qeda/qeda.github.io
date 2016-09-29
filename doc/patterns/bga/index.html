@@ -35,7 +35,10 @@
 </li>
 </ul>
 </div><h1 id="ball-grid-array-bga-land-pattern">Ball Grid Array (BGA) land pattern</h1>
-<center><img src="/img/doc/patterns/bga.svg" width="600" alt="BGA Package"></center>
+<pre><code class="lang-yaml">housing:
+  pattern: BGA
+</code></pre>
+<center><img src="/img/doc/patterns/bga.svg" width="60%" alt="BGA Package"></center>
 
 <h2 id="required-parameters">Required parameters</h2>
 <table>
@@ -105,12 +108,30 @@
 </thead>
 <tbody>
 <tr>
+<td><code>leadCount</code></td>
+<td>integer</td>
+<td>Actual lead count</td>
+</tr>
+<tr>
 <td><code>padDiameter</code></td>
 <td>float</td>
 <td>Diameter of pad recommended by component manufacturer</td>
 </tr>
 </tbody>
 </table>
+<h2 id="real-example">Real example</h2>
+<p><a class="ext" href="https://github.com/qeda/library/blob/master/analog/ad9393.yaml" target="_blank">Analog Devices AD9393</a><!--_-->:</p>
+<pre><code class="lang-yaml">housing:
+  pattern: BGA
+  bodyWidth: 5.90-6.10
+  bodyLength: 5.90-6.10
+  height: 1.40
+  pitch: 0.5
+  rowCount: 10
+  columnCount: 10
+  leadDiameter: 0.25-0.35
+  leadCount: 76
+</code></pre>
 </div></div><div id="push"></div></div><div id="footer-wrapper"><footer class="footer"><div class="container"><div class="row"><div class="col-md-8"><p>Copyright &copy; 2015&ndash;2016 QEDA Authors</p><p>Powered by&nbsp;<a href="http://noviga.com/" target="_blank"><img src="/img/noviga.png" height="30"></a></p></div><div class="col-md-1"><a class="cap" href="/">Home</a></div><div class="col-md-1"><a class="cap" href="/doc/">Doc</a></div><div class="col-md-1"><a class="cap ext" href="https://github.com/qeda" target="_blank">Source</a></div><div class="col-md-1"><a class="cap" href="/donate/">Donate</a></div></div></div></footer></div></body><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous"><link href="/css/qeda.css" rel="stylesheet"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

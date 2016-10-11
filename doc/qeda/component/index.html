@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>Component Description</title><link rel="shortcut icon" href="/img/favicon.ico"></head><body><div id="wrap"><div id="content"><nav><div class="container-fluid"></div><div class="navbar-header"><a class="navbar-brand" href="/"><img alt="QEDA" src="/img/logo.svg" width="60" height="60" style="margin-top: -20px"></a><div class="navbar-header visible-sm visible-xs"><button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div></div><div class="collapse navbar-collapse"><a class="navbar-brand" href="/">QEDA</a><ul class="nav nav-pills pull-right"><li><a href="/doc/">Documentation</a></li><li><a class="ext" href="https://github.com/qeda" target="_blank">Source Code</a></li><li class="active"><a href="/donate/">Donate</a></li></ul></div></nav><div class="content"><div class="pull-right toc"><ul>
+<!DOCTYPE html><html lang="en"><head><title>Component Description</title><link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" sizes="16x16 24x24 32x32 64x64 128x128 256x256 512x512"></head><body><div id="wrap"><div id="content"><nav><div class="container-fluid"></div><div class="navbar-header"><a class="navbar-brand" href="/"><img alt="QEDA" src="/img/logo.svg" width="60" height="60" style="margin-top: -20px"></a><div class="navbar-header visible-sm visible-xs"><button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div></div><div class="collapse navbar-collapse"><a class="navbar-brand" href="/">QEDA</a><ul class="nav nav-pills pull-right"><li><a href="/doc/">Documentation</a></li><li><a class="ext" href="https://github.com/qeda" target="_blank">Source Code</a></li><li class="active"><a href="/donate/">Donate</a></li></ul></div></nav><div class="content"><div class="pull-right toc"><ul>
 <li><strong><a href="/doc/qeda">QEDA Core</a></strong><ul>
 <li><a href="/doc/qeda/utility/">Command-line utility</a></li>
 <li><a href="/doc/qeda/component/">Component description</a></li>
@@ -38,22 +38,22 @@ housing:
 <h2 id="parameter-types">Parameter types</h2>
 <ul>
 <li><p><em>boolean</em> &mdash; logical type, can be only <code>false</code> or <code>true</code></p>
-<p><strong>Real example</strong>: <code>true</code></p>
+<p><strong>Example</strong>: <code>true</code></p>
 </li>
 <li><p><em>list</em> &mdash; comma separated list of strings or numbers (or may contain only one item without comma)</p>
-<p><strong>Real example</strong>: <code>foo, bar, 10, baz</code></p>
+<p><strong>Example</strong>: <code>foo, bar, 10, baz</code></p>
 </li>
 <li><p><em>number</em> &mdash; numerical integer or float</p>
-<p><strong>Real example</strong>: <code>1.35</code></p>
+<p><strong>Example</strong>: <code>1.35</code></p>
 </li>
 <li><p><em>range</em> &mdash; range of numbers</p>
-<p><strong>Real example</strong>: <code>1.25-1.45</code></p>
+<p><strong>Example</strong>: <code>1.25-1.45</code></p>
 </li>
 <li><p><em>string</em> &mdash; line of text (may be quoted or not; quotes are recommended for numerical string in order to avoid ambiguity)</p>
-<p><strong>Real example</strong>: <code>Bipolar transistor</code></p>
+<p><strong>Example</strong>: <code>Bipolar transistor</code></p>
 </li>
 <li><p><em>structure</em> &mdash; entity that has second-level fields</p>
-<p><strong>Real example</strong>:</p>
+<p><strong>Example</strong>:</p>
 <pre><code class="lang-yaml">struct:
   field1: foo
   field2: 10
@@ -236,6 +236,7 @@ groups:
 <p>Structure format:</p>
 <pre><code class="lang-yaml">housing:
   suffix: &lt;optional suffix&gt;
+  units: mm | inches # &#39;mm&#39; by default
   pattern: &lt;pattern handler script name&gt;
   # or
   outline: &lt;outline qualified name&gt;
